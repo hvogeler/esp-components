@@ -1,0 +1,27 @@
+menu "MCP23017 Configuration"
+
+    config MCP23017_I2C_ADDRESS
+        hex "I2C Address"
+        default 0x20
+        range 0x20 0x27
+        help
+            I2C address of the MCP23017 device.
+            Valid range is 0x20-0x27 depending on A0-A2 pin configuration.
+
+    config MCP23017_I2C_CLOCK_FREQ
+        int "I2C Clock Frequency (Hz)"
+        default 100000
+        range 10000 400000
+        help
+            I2C clock frequency in Hz.
+            Standard mode: 100000 Hz
+            Fast mode: 400000 Hz
+
+    config MCP23017_RESET_GPIO
+        int "Reset GPIO Pin"
+        default 6
+        range 0 48
+        help
+            GPIO pin connected to the MCP23017 reset pin.
+
+endmenu

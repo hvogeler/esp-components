@@ -23,17 +23,17 @@ void I2c::init()
         return;
     }
     ESP_LOGI(TAG, "I2C master bus created (SCL: GPIO%d, SDA: GPIO%d)",
-             CONFIG_I2C_SCL_GPIO, CONFIG_I2C_SDA_GPIO);
+             CONFIG_HV_I2C_SCL_GPIO, CONFIG_HV_I2C_SDA_GPIO);
 
-#if CONFIG_I2C_PROBE_ADDRESS != 0
-    err = i2c_master_probe(bus_handle, CONFIG_I2C_PROBE_ADDRESS, 100);
+#if CONFIG_HV_I2C_PROBE_ADDRESS != 0
+    err = i2c_master_probe(bus_handle, CONFIG_HV_I2C_PROBE_ADDRESS, 100);
     if (err == ESP_OK)
     {
-        ESP_LOGI(TAG, "Device found at 0x%02X", CONFIG_I2C_PROBE_ADDRESS);
+        ESP_LOGI(TAG, "Device found at 0x%02X", CONFIG_HV_I2C_PROBE_ADDRESS);
     }
     else
     {
-        ESP_LOGE(TAG, "Device not found at 0x%02X", CONFIG_I2C_PROBE_ADDRESS);
+        ESP_LOGE(TAG, "Device not found at 0x%02X", CONFIG_HV_I2C_PROBE_ADDRESS);
     }
 #endif
 }

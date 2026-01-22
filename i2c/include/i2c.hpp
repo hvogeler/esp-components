@@ -6,8 +6,8 @@
 
 class I2c
 {
-    static constexpr gpio_num_t I2C_SDA_PIN = static_cast<gpio_num_t>(CONFIG_I2C_SDA_GPIO);
-    static constexpr gpio_num_t I2C_SCL_PIN = static_cast<gpio_num_t>(CONFIG_I2C_SCL_GPIO);
+    static constexpr gpio_num_t I2C_SDA_PIN = static_cast<gpio_num_t>(CONFIG_HV_I2C_SDA_GPIO);
+    static constexpr gpio_num_t I2C_SCL_PIN = static_cast<gpio_num_t>(CONFIG_HV_I2C_SCL_GPIO);
     i2c_master_bus_handle_t bus_handle;
     mutable std::mutex mutex_;
 

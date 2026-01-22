@@ -1,20 +1,20 @@
 menu "I2C Configuration"
 
-    config I2C_SCL_GPIO
+    config HV_I2C_SCL_GPIO
         int "SCL GPIO Pin"
         default 4
         range 0 48
         help
             GPIO pin number for I2C SCL (clock) line.
 
-    config I2C_SDA_GPIO
+    config HV_I2C_SDA_GPIO
         int "SDA GPIO Pin"
         default 3
         range 0 48
         help
             GPIO pin number for I2C SDA (data) line.
 
-    config I2C_PROBE_ADDRESS
+    config HV_I2C_PROBE_ADDRESS
         hex "I2C Probe Address (0 to disable)"
         default 0x00
         range 0x00 0x7F

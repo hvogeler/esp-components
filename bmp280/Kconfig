@@ -1,0 +1,108 @@
+menu "BMP280 Configuration"
+
+    config BMP280_I2C_ADDRESS
+        hex "I2C Address"
+        default 0x76
+        range 0x76 0x77
+        help
+            I2C address of the BMP280/BME280 sensor.
+            0x76 when SDO pin is connected to GND.
+            0x77 when SDO pin is connected to VCC.
+
+    config BMP280_I2C_CLOCK_SPEED_HZ
+        int "I2C Clock Speed (Hz)"
+        default 100000
+        range 100000 400000
+        help
+            I2C clock speed in Hz.
+            100000 (100kHz) - Standard mode, more reliable.
+            400000 (400kHz) - Fast mode, higher throughput.
+
+    choice BMP280_TEMP_OVERSAMPLING
+        prompt "Temperature Oversampling"
+        default BMP280_TEMP_OVERSAMPLING_X2
+        help
+            Temperature measurement oversampling setting.
+            Higher values increase accuracy but also measurement time.
+
+        config BMP280_TEMP_OVERSAMPLING_SKIP
+            bool "Skipped (output set to 0x80000)"
+        config BMP280_TEMP_OVERSAMPLING_X1
+            bool "x1"
+        config BMP280_TEMP_OVERSAMPLING_X2
+            bool "x2"
+        config BMP280_TEMP_OVERSAMPLING_X4
+            bool "x4"
+        config BMP280_TEMP_OVERSAMPLING_X8
+            bool "x8"
+        config BMP280_TEMP_OVERSAMPLING_X16
+            bool "x16"
+    endchoice
+
+    config BMP280_TEMP_OVERSAMPLING
+        int
+        default 0 if BMP280_TEMP_OVERSAMPLING_SKIP
+        default 1 if BMP280_TEMP_OVERSAMPLING_X1
+        default 2 if BMP280_TEMP_OVERSAMPLING_X2
+        default 3 if BMP280_TEMP_OVERSAMPLING_X4
+        default 4 if BMP280_TEMP_OVERSAMPLING_X8
+        default 5 if BMP280_TEMP_OVERSAMPLING_X16
+
+    choice BMP280_PRESS_OVERSAMPLING
+        prompt "Pressure Oversampling"
+        default BMP280_PRESS_OVERSAMPLING_X16
+        help
+            Pressure measurement oversampling setting.
+            Higher values increase accuracy but also measurement time.
+
+        config BMP280_PRESS_OVERSAMPLING_SKIP
+            bool "Skipped (output set to 0x80000)"
+        config BMP280_PRESS_OVERSAMPLING_X1
+            bool "x1"
+        config BMP280_PRESS_OVERSAMPLING_X2
+            bool "x2"
+        config BMP280_PRESS_OVERSAMPLING_X4
+            bool "x4"
+        config BMP280_PRESS_OVERSAMPLING_X8
+            bool "x8"
+        config BMP280_PRESS_OVERSAMPLING_X16
+            bool "x16"
+    endchoice
+
+    config BMP280_PRESS_OVERSAMPLING
+        int
+        default 0 if BMP280_PRESS_OVERSAMPLING_SKIP
+        default 1 if BMP280_PRESS_OVERSAMPLING_X1
+        default 2 if BMP280_PRESS_OVERSAMPLING_X2
+        default 3 if BMP280_PRESS_OVERSAMPLING_X4
+        default 4 if BMP280_PRESS_OVERSAMPLING_X8
+        default 5 if BMP280_PRESS_OVERSAMPLING_X16
+
+    choice BMP280_IIR_FILTER
+        prompt "IIR Filter Coefficient"
+        default BMP280_IIR_FILTER_OFF
+        help
+            IIR filter coefficient for reducing noise in measurements.
+            Higher values provide more filtering but slower response.
+
+        config BMP280_IIR_FILTER_OFF
+            bool "Off"
+        config BMP280_IIR_FILTER_2
+            bool "2"
+        config BMP280_IIR_FILTER_4
+            bool "4"
+        config BMP280_IIR_FILTER_8
+            bool "8"
+        config BMP280_IIR_FILTER_16
+            bool "16"
+    endchoice
+
+    config BMP280_IIR_FILTER
+        int
+        default 0 if BMP280_IIR_FILTER_OFF
+        default 1 if BMP280_IIR_FILTER_2
+        default 2 if BMP280_IIR_FILTER_4
+        default 3 if BMP280_IIR_FILTER_8
+        default 4 if BMP280_IIR_FILTER_16
+
+endmenu

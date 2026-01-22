@@ -35,12 +35,12 @@ esp-components/
 # 2. Commit the version bump
 git commit -am "Release 1.1.0"
 
-# 3. Create the tag (with 'v' prefix)
-git tag v1.1.0
+# 3. Create the tag (must match version exactly, no 'v' prefix)
+git tag 1.1.0
 
 # 4. Push commit and tag
 git push origin main
-git push origin v1.1.0       # pushes specific tag
+git push origin 1.1.0        # pushes specific tag
 # or: git push origin --tags  # pushes all tags
 ```
 
@@ -72,14 +72,14 @@ dependencies:
 
 ## Tag Naming
 
-Git tags should match the version with an optional `v` prefix:
+Git tags must match the version exactly as specified in `idf_component.yml` (without a `v` prefix):
 
 | Version in manifest | Git tag |
 |--------------------|---------|
-| `1.0.0` | `v1.0.0` |
-| `2.1.3` | `v2.1.3` |
+| `1.0.0` | `1.0.0` |
+| `2.1.3` | `2.1.3` |
 
-The IDF Component Manager strips the `v` prefix when matching versions.
+The IDF Component Manager requires the tag to match the version string exactly.
 
 ## Notes
 

@@ -16,9 +16,9 @@ Run `idf.py menuconfig` and navigate to "MCP23017 Configuration":
 
 | Parameter | Default | Range | Description |
 |-----------|---------|-------|-------------|
-| `CONFIG_MCP23017_I2C_ADDRESS` | 0x20 | 0x20-0x27 | I2C device address (depends on A0-A2 pins) |
-| `CONFIG_MCP23017_I2C_CLOCK_FREQ` | 100000 | 10000-400000 | I2C clock frequency in Hz |
-| `CONFIG_MCP23017_RESET_GPIO` | 6 | 0-48 | GPIO pin connected to MCP23017 reset |
+| `CONFIG_HV_MCP23017_I2C_ADDRESS` | 0x20 | 0x20-0x27 | I2C device address (depends on A0-A2 pins) |
+| `CONFIG_HV_MCP23017_I2C_CLOCK_FREQ` | 100000 | 10000-400000 | I2C clock frequency in Hz |
+| `CONFIG_HV_MCP23017_RESET_GPIO` | 6 | 0-48 | GPIO pin connected to MCP23017 reset |
 
 ## Dependencies
 

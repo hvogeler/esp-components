@@ -49,11 +49,11 @@ class Bmp280
     static constexpr const char *TAG = "Bmp280";
 
     // Configuration from Kconfig
-    static constexpr uint8_t I2C_ADDRESS = CONFIG_BMP280_I2C_ADDRESS;
-    static constexpr uint32_t I2C_CLOCK_SPEED = CONFIG_BMP280_I2C_CLOCK_SPEED_HZ;
-    static constexpr uint8_t TEMP_OVERSAMPLING = CONFIG_BMP280_TEMP_OVERSAMPLING;
-    static constexpr uint8_t PRESS_OVERSAMPLING = CONFIG_BMP280_PRESS_OVERSAMPLING;
-    static constexpr uint8_t IIR_FILTER = CONFIG_BMP280_IIR_FILTER;
+    static constexpr uint8_t I2C_ADDRESS = CONFIG_HV_BMP280_I2C_ADDRESS;
+    static constexpr uint32_t I2C_CLOCK_SPEED = CONFIG_HV_BMP280_I2C_CLOCK_SPEED_HZ;
+    static constexpr uint8_t TEMP_OVERSAMPLING = CONFIG_HV_BMP280_TEMP_OVERSAMPLING;
+    static constexpr uint8_t PRESS_OVERSAMPLING = CONFIG_HV_BMP280_PRESS_OVERSAMPLING;
+    static constexpr uint8_t IIR_FILTER = CONFIG_HV_BMP280_IIR_FILTER;
 
 public:
     bool is_initialized = false;

@@ -22,7 +22,7 @@ std::timed_mutex &MCP23017::getMutex()
     return mutex_;
 }
 
-MCP23017::MCP23017() : dev_handle_(nullptr), address_(CONFIG_MCP23017_I2C_ADDRESS), initialized_(false) {}
+MCP23017::MCP23017() : dev_handle_(nullptr), address_(CONFIG_HV_MCP23017_I2C_ADDRESS), initialized_(false) {}
 
 MCP23017::~MCP23017()
 {
@@ -42,7 +42,7 @@ esp_err_t MCP23017::init()
     i2c_device_config_t dev_config = {};
     dev_config.dev_addr_length = I2C_ADDR_BIT_LEN_7;
     dev_config.device_address = address_;
-    dev_config.scl_speed_hz = CONFIG_MCP23017_I2C_CLOCK_FREQ;
+    dev_config.scl_speed_hz = CONFIG_HV_MCP23017_I2C_CLOCK_FREQ;
 
     esp_err_t err = I2c::getInstance().add_device(dev_config, dev_handle_);
     if (err != ESP_OK)
@@ -132,7 +132,7 @@ esp_err_t MCP23017::setPullUpB(uint8_t pullup)
 
 void MCP23017::reset()
 {
-    idf::GPIO_Output reset_gpio_{idf::GPIONum(CONFIG_MCP23017_RESET_GPIO)};
+    idf::GPIO_Output reset_gpio_{idf::GPIONum(CONFIG_HV_MCP23017_RESET_GPIO)};
     reset_gpio_.set_low();
     vTaskDelay(pdMS_TO_TICKS(100));
     reset_gpio_.set_high();

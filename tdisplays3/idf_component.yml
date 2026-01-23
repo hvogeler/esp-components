@@ -1,0 +1,8 @@
+version: "1.0.2"
+description: "ESP-IDF driver for LilyGO T-Display S3"
+dependencies:
+  idf:
+    version: ">=5.0.0"
+  hiruna/esp-idf-aw9364:
+    git: https://github.com/hvogeler/esp-idf-aw9364.git
+    version: main

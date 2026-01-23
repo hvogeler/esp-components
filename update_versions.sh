@@ -16,7 +16,4 @@ for manifest in "$SCRIPT_DIR"/hvo__*/idf_component.yml; do
     fi
 done
 
-git tag ${VERSION}
-git push origin ${VERSION}
-
 echo "All components updated to version $VERSION"

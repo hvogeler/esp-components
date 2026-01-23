@@ -5,7 +5,7 @@ dependencies:
     version: ">=5.0.0"
   espressif/esp-idf-cxx:
     version: "^1.0.0"
-  i2c:
+  hv_i2c:
     git: https://github.com/hvogeler/esp-components.git
-    path: i2c
+    path: hv_i2c
     version: "*"

@@ -23,8 +23,8 @@ All components in this repository share the same version number. When releasing:
 Example structure:
 ```
 esp-components/
-├── i2c/idf_component.yml         → version: "1.0.0"
-└── mcp23017/idf_component.yml    → version: "1.0.0"
+├── hv_i2c/idf_component.yml         → version: "1.0.0"
+└── hv_mcp23017/idf_component.yml    → version: "1.0.0"
 ```
 
 ## Release Workflow
@@ -50,25 +50,25 @@ Reference components in your project's `idf_component.yml`:
 
 ```yaml
 dependencies:
-  i2c:
+  hv_i2c:
     git: https://github.com/hvogeler/esp-components.git
-    path: i2c
-    version: "^1.0.0"
-  mcp23017:
+    path: hv_i2c
+    version: "1.0.3"
+  hv_mcp23017:
     git: https://github.com/hvogeler/esp-components.git
-    path: mcp23017
-    version: "^1.0.0"
+    path: hv_mcp23017
+    version: "1.0.3"
 ```
 
 ## Version Specifiers
 
-| Specifier | Meaning |
-|-----------|---------|
-| `1.0.0` | Exact version |
-| `^1.0.0` | Compatible updates (>=1.0.0 <2.0.0) |
-| `~1.0.0` | Patch updates only (>=1.0.0 <1.1.0) |
-| `>=1.0.0` | At least this version |
-| `*` | Any version (not recommended for production) |
+**Important:** For git-based dependencies, the `version` field must be an **exact git reference** (tag, branch, or commit hash). Semver specifiers only work for components published to the ESP Component Registry.
+
+| Git dependency | Registry dependency |
+|----------------|---------------------|
+| `"1.0.3"` (exact tag) | `"^1.0.0"` (compatible updates) |
+| `main` (branch) | `"~1.0.0"` (patch updates only) |
+| `abc123` (commit hash) | `">=1.0.0"` (at least version) |
 
 ## Tag Naming
 
@@ -85,4 +85,5 @@ The IDF Component Manager requires the tag to match the version string exactly.
 
 - The shared version strategy means all components get a version bump even if only one changes
 - This keeps dependency management simple and ensures consistent component sets
-- This approach is fully compatible with the Espressif Component Registry for future publishing
+- **Git dependencies require exact version tags** - semver ranges (`^`, `~`, `>=`) only work after publishing to the ESP Component Registry
+- To get automatic semver resolution, publish components to https://components.espressif.com/

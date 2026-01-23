@@ -1,9 +1,9 @@
-version: "1.0.3"
+version: "1.0.4"
 description: "BMP280/BME280 temperature and pressure sensor driver"
 dependencies:
   idf:
     version: ">=5.0.0"
-  hv_i2c:
+  hvo__i2c:
     git: https://github.com/hvogeler/esp-components.git
-    path: hv_i2c
+    path: hvo__i2c
     version: "*"

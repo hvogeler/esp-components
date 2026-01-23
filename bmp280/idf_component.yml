@@ -1,4 +1,4 @@
-version: "1.0.8"
+version: "1.0.9"
 description: "BMP280/BME280 temperature and pressure sensor driver"
 dependencies:
   idf:

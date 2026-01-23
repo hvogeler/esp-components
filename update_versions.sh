@@ -9,7 +9,7 @@ fi
 VERSION="$1"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-for manifest in "$SCRIPT_DIR"/hvo__*/idf_component.yml; do
+for manifest in "$SCRIPT_DIR"/*/idf_component.yml; do
     if [ -f "$manifest" ]; then
         sed -i '' "s/^version: .*/version: \"$VERSION\"/" "$manifest"
         echo "Updated: $manifest"

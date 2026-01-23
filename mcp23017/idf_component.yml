@@ -1,11 +1,11 @@
-version: "1.0.6"
+version: "1.0.7"
 description: "ESP-IDF driver for MCP23017 16-bit I/O expander"
 dependencies:
   idf:
     version: ">=5.0.0"
   espressif/esp-idf-cxx:
     version: "^1.0.0"
-  hvo__i2c:
+  hvo/i2c:
     git: https://github.com/hvogeler/esp-components.git
-    path: hvo__i2c
+    path: i2c
     version: "*"

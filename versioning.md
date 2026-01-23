@@ -23,8 +23,8 @@ All components in this repository share the same version number. When releasing:
 Example structure:
 ```
 esp-components/
-├── hvo__i2c/idf_component.yml         → version: "1.0.0"
-└── hvo__mcp23017/idf_component.yml    → version: "1.0.0"
+├── i2c/idf_component.yml         → version: "1.0.0"
+└── mcp23017/idf_component.yml    → version: "1.0.0"
 ```
 
 ## Release Workflow
@@ -50,15 +50,17 @@ Reference components in your project's `idf_component.yml`:
 
 ```yaml
 dependencies:
-  hvo__i2c:
+  hvo/i2c:
     git: https://github.com/hvogeler/esp-components.git
-    path: hvo__i2c
-    version: "1.0.3"
-  hvo__mcp23017:
+    path: i2c
+    version: "1.0.6"
+  hvo/mcp23017:
     git: https://github.com/hvogeler/esp-components.git
-    path: hvo__mcp23017
-    version: "1.0.3"
+    path: mcp23017
+    version: "1.0.6"
 ```
+
+The component manager will create directories like `hvo__i2c` in `managed_components/` (the `/` becomes `__`).
 
 ## Version Specifiers
 

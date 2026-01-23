@@ -6,8 +6,10 @@ Personal collection of reusable ESP-IDF components.
 
 | Component | Description |
 |-----------|-------------|
+| [bmp280](./bmp280/) | BMP280/BME280 temperature and pressure sensor driver |
 | [i2c](./i2c/) | I2C master bus wrapper with singleton interface |
 | [mcp23017](./mcp23017/) | MCP23017 16-bit I/O expander driver |
+| [tdisplays3](./tdisplays3/) | LilyGO T-Display S3 board with ST7789 LCD and LVGL integration |
 
 ## Usage
 
@@ -17,13 +19,21 @@ Add to your project's `main/idf_component.yml`:
 
 ```yaml
 dependencies:
+  bmp280:
+    git: https://github.com/hvogeler/esp-components.git
+    path: bmp280
+    version: "*"
   i2c:
-    git: https://github.com/YOUR_USERNAME/esp-components.git
+    git: https://github.com/hvogeler/esp-components.git
     path: i2c
     version: "*"
   mcp23017:
-    git: https://github.com/YOUR_USERNAME/esp-components.git
+    git: https://github.com/hvogeler/esp-components.git
     path: mcp23017
+    version: "*"
+  tdisplays3:
+    git: https://github.com/hvogeler/esp-components.git
+    path: tdisplays3
     version: "*"
 ```
 

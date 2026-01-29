@@ -61,6 +61,8 @@ public:
 
     void reset();
 
+    bool isInitialized() const { return initialized_; }
+
 private:
     static constexpr const char *TAG_ = "MCP23017";
 

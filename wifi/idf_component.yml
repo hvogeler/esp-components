@@ -1,10 +1,9 @@
-version: "1.0.11"
+version: "1.0.12"
 description: "ESP-IDF WiFi wrapper with singleton interface and NTP time sync"
 dependencies:
   idf:
     version: ">=5.0.0"
   hvo/nvs:
-    path: ../nvs
-    # git: https://github.com/hvogeler/esp-components.git
-    # path: nvs
-    # version: "*"
+    git: https://github.com/hvogeler/esp-components.git
+    path: nvs
+    version: "*"

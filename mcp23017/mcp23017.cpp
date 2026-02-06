@@ -100,6 +100,16 @@ esp_err_t MCP23017::setPortBDirection(uint8_t direction)
     return writeRegister(Register::IODIRB, direction);
 }
 
+esp_err_t MCP23017::readPortADirection(uint8_t &direction)
+{
+    return readRegister(Register::IODIRA, &direction);
+}
+
+esp_err_t MCP23017::readPortBDirection(uint8_t &direction)
+{
+    return readRegister(Register::IODIRB, &direction);
+}
+
 esp_err_t MCP23017::writePortA(uint8_t value)
 {
     return writeRegister(Register::GPIOA, value);

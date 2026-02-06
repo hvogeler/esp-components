@@ -52,6 +52,8 @@ public:
     // 0x01111110 means pin 7 and pin 0 are output.
     esp_err_t setPortADirection(uint8_t direction_pin_mask);
     esp_err_t setPortBDirection(uint8_t direction_pin_mask);
+    esp_err_t readPortADirection(uint8_t &direction);
+    esp_err_t readPortBDirection(uint8_t &direction);
     esp_err_t writePortA(uint8_t value);
     esp_err_t writePortB(uint8_t value);
     esp_err_t readPortA(uint8_t &value);

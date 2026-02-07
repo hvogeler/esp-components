@@ -1,4 +1,4 @@
-version: "1.0.14"
+version: "1.0.15"
 description: "ESP-IDF NVS wrapper class for simplified key-value storage"
 dependencies:
   idf:

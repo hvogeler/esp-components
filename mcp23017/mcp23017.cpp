@@ -140,6 +140,88 @@ esp_err_t MCP23017::setPullUpB(uint8_t pullup)
     return writeRegister(Register::GPPUB, pullup);
 }
 
+esp_err_t MCP23017::setPin(McpBank bank, uint8_t pin, PinLevel level)
+{
+    if (pin > 7)
+    {
+        ESP_LOGE(TAG_, "Invalid pin number %d (must be 0-7)", pin);
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    uint8_t port_state;
+    esp_err_t ret;
+
+    if (bank == McpBank::GPA)
+    {
+        ret = readRegister(Register::GPIOA, &port_state);
+    }
+    else
+    {
+        ret = readRegister(Register::GPIOB, &port_state);
+    }
+
+    if (ret != ESP_OK)
+    {
+        return ret;
+    }
+
+    if (level == PinLevel::HIGH)
+    {
+        port_state |= (1 << pin);
+    }
+    else
+    {
+        port_state &= ~(1 << pin);
+    }
+
+    if (bank == McpBank::GPA)
+    {
+        return writeRegister(Register::GPIOA, port_state);
+    }
+    return writeRegister(Register::GPIOB, port_state);
+}
+
+esp_err_t MCP23017::setPinDirection(McpBank bank, uint8_t pin, PinDirection direction)
+{
+    if (pin > 7)
+    {
+        ESP_LOGE(TAG_, "Invalid pin number %d (must be 0-7)", pin);
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    uint8_t dir;
+    esp_err_t ret;
+
+    if (bank == McpBank::GPA)
+    {
+        ret = readRegister(Register::IODIRA, &dir);
+    }
+    else
+    {
+        ret = readRegister(Register::IODIRB, &dir);
+    }
+
+    if (ret != ESP_OK)
+    {
+        return ret;
+    }
+
+    if (direction == PinDirection::INPUT)
+    {
+        dir |= (1 << pin);
+    }
+    else
+    {
+        dir &= ~(1 << pin);
+    }
+
+    if (bank == McpBank::GPA)
+    {
+        return writeRegister(Register::IODIRA, dir);
+    }
+    return writeRegister(Register::IODIRB, dir);
+}
+
 void MCP23017::reset()
 {
     idf::GPIO_Output reset_gpio_{idf::GPIONum(CONFIG_HV_MCP23017_RESET_GPIO)};

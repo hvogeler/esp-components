@@ -11,6 +11,27 @@
 #include "freertos/FreeRTOS.h"
 #include "gpio_cxx.hpp"
 
+/**
+ * @brief MCP23017 bank selection
+ */
+enum class McpBank : uint8_t
+{
+    GPA = 0,
+    GPB = 1,
+};
+
+enum class PinLevel : uint8_t
+{
+    LOW = 0,
+    HIGH = 1,
+};
+
+enum class PinDirection : uint8_t
+{
+    OUTPUT = 0,
+    INPUT = 1,
+};
+
 class MCP23017
 {
 public:
@@ -60,6 +81,9 @@ public:
     esp_err_t readPortB(uint8_t &value);
     esp_err_t setPullUpA(uint8_t pullup);
     esp_err_t setPullUpB(uint8_t pullup);
+
+    esp_err_t setPin(McpBank bank, uint8_t pin, PinLevel level);
+    esp_err_t setPinDirection(McpBank bank, uint8_t pin, PinDirection direction);
 
     void reset();
 

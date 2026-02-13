@@ -1,0 +1,6 @@
+version: "1.0.22"
+description: "ESP-IDF button wrapper class"
+dependencies:
+  idf:
+    version: ">=5.0.0"
+  espressif/button: "^4.1.4"

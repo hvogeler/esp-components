@@ -14,6 +14,7 @@ private:
     int s_retry_num_;
     std::string wifi_ssid;
     std::string wifi_password;
+    bool is_connected;
 
     mutable std::mutex mutex_;
 
@@ -33,7 +34,9 @@ public:
         return instance;
     }
 
-    bool is_connected;
+    bool get_is_connected() {
+        return is_connected;
+    }
 
     esp_err_t wifi_connect(void);
     static void wifi_event_handler(void *arg, esp_event_base_t event_base,

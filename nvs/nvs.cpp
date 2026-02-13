@@ -1,4 +1,5 @@
 #include "nvs.hpp"
+#include "esp_log.h"
 
 esp_err_t Nvs::open_namespace(std::string nvs_ns)
 {
@@ -15,17 +16,26 @@ esp_err_t Nvs::open_namespace(std::string nvs_ns)
 
 esp_err_t Nvs::write(std::string key, double v)
 {
-    return nvs_set_i32(handle_, key.c_str(), v);
+    esp_err_t ret = nvs_set_i32(handle_, key.c_str(), v);
+    if (ret == ESP_OK)
+        ret = nvs_commit(handle_);
+    return ret;
 }
 
 esp_err_t Nvs::write(std::string key, int v)
 {
-    return nvs_set_i32(handle_, key.c_str(), v);
+    esp_err_t ret = nvs_set_i32(handle_, key.c_str(), v);
+    if (ret == ESP_OK)
+        ret = nvs_commit(handle_);
+    return ret;
 }
 
 esp_err_t Nvs::write(std::string key, std::string v)
 {
-    return nvs_set_str(handle_, key.c_str(), v.c_str());
+    esp_err_t ret = nvs_set_str(handle_, key.c_str(), v.c_str());
+    if (ret == ESP_OK)
+        ret = nvs_commit(handle_);
+    return ret;
 }
 
 esp_err_t Nvs::read(std::string key, double &v)

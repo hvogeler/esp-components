@@ -1,4 +1,4 @@
-version: "1.0.15"
+version: "1.0.16"
 description: "ESP-IDF driver for LilyGO T-Display S3"
 dependencies:
   idf:

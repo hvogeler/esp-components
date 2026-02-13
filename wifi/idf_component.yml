@@ -1,4 +1,4 @@
-version: "1.0.16"
+version: "1.0.19"
 description: "ESP-IDF WiFi wrapper with singleton interface and NTP time sync"
 dependencies:
   idf:

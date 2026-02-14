@@ -1,5 +1,6 @@
 #include "wifi.hpp"
 #include "esp_wifi.h"
+#include "esp_netif.h"
 #include "esp_log.h"
 #include "esp_sntp.h"
 #include "nvs_flash.h"
@@ -64,7 +65,20 @@ esp_err_t Wifi::wifi_connect(void)
 
     // Initialize WiFi
     ESP_ERROR_CHECK(esp_netif_init());
-    esp_netif_create_default_wifi_sta();
+    esp_netif_t *netif = esp_netif_create_default_wifi_sta();
+
+    if (!hostname_.empty())
+    {
+        esp_err_t err = esp_netif_set_hostname(netif, hostname_.c_str());
+        if (err == ESP_OK)
+        {
+            ESP_LOGI(TAG, "Set hostname to: %s", hostname_.c_str());
+        }
+        else
+        {
+            ESP_LOGE(TAG, "Failed to set hostname: %s", esp_err_to_name(err));
+        }
+    }
 
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));

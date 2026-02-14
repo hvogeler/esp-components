@@ -14,6 +14,7 @@ private:
     int s_retry_num_;
     std::string wifi_ssid;
     std::string wifi_password;
+    std::string hostname_;
     bool is_connected;
 
     mutable std::mutex mutex_;
@@ -38,6 +39,7 @@ public:
         return is_connected;
     }
 
+    void set_hostname(const std::string &hostname) { hostname_ = hostname; }
     esp_err_t wifi_connect(void);
     static void wifi_event_handler(void *arg, esp_event_base_t event_base,
                                    int32_t event_id, void *event_data);

@@ -1,0 +1,6 @@
+version: "1.0.25"
+description: "ESP-IDF LED wrapper class"
+dependencies:
+  idf:
+    version: ">=5.0.0"
+  espressif/esp-idf-cxx: "^1.0.2-beta"

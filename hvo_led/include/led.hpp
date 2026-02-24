@@ -18,21 +18,35 @@ class Led
 {
     idf::GPIO_Output gpio_pin_;
     led_state_t led_state_;
+    bool is_active_high_{true};
 
 public:
     Led(uint32_t pin) : gpio_pin_(idf::GPIONum(pin)), led_state_(LedState::off)
     {
     }
 
+    Led(uint32_t pin, bool is_active_high) : gpio_pin_(idf::GPIONum(pin)), led_state_(LedState::off)
+    {
+        is_active_high_ = is_active_high;
+    }
+    
     void turn_on()
     {
-        gpio_pin_.set_high();
+        if (is_active_high_) {
+            gpio_pin_.set_high();
+        } else {
+            gpio_pin_.set_low();
+        }
         led_state_ = LedState::on;
     }
 
     void turn_off()
     {
-        gpio_pin_.set_low();
+        if (is_active_high_) {
+            gpio_pin_.set_low();
+        } else {
+            gpio_pin_.set_high();
+        }
         led_state_ = LedState::off;
     }
 

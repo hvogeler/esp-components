@@ -9,13 +9,13 @@ ESP-IDF component providing a simple C++ wrapper around GPIO output for driving 
 
 ## Usage
 
-Add `hvo_led` to your `REQUIRES` in `CMakeLists.txt`:
+Add `hvo_led` to your `idf_component.yml`:
 
-```cmake
-idf_component_register(
-    SRCS "main.cpp"
-    INCLUDE_DIRS "."
-    REQUIRES hvo_led)
+```
+  hvo/hvo_led:
+    git: https://github.com/hvogeler/esp-components.git
+    path: hvo_led
+    version: "1.0.25"
 ```
 
 ### Example
@@ -43,11 +43,11 @@ led.blink(200, 3);
 
 ## API
 
-| Method | Description |
-|---|---|
-| `Led(uint32_t pin)` | Construct an LED on the given GPIO pin |
-| `turn_on()` | Set GPIO high |
-| `turn_off()` | Set GPIO low |
-| `state()` | Returns `hvo::LedState::on` or `hvo::LedState::off` |
-| `state_str()` | Returns `"ON"`, `"OFF"`, or `"UNKNOWN"` |
+| Method                      | Description                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------- |
+| `Led(uint32_t pin)`         | Construct an LED on the given GPIO pin                                           |
+| `turn_on()`                 | Set GPIO high                                                                    |
+| `turn_off()`                | Set GPIO low                                                                     |
+| `state()`                   | Returns `hvo::LedState::on` or `hvo::LedState::off`                              |
+| `state_str()`               | Returns `"ON"`, `"OFF"`, or `"UNKNOWN"`                                          |
 | `blink(duration_ms, count)` | Blink `count` times with `duration_ms` on/off interval (defaults: 500ms, 1 time) |
